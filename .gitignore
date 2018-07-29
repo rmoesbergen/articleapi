@@ -1,5 +1,5 @@
 .idea/
-migrations/
+articleapi/migrations/*.py
 __pycache__/
 *.sqlite3
 settings.py
