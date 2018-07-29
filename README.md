@@ -15,9 +15,9 @@ ook REST calls voor gemaakt worden.
 Elke call heeft altijd een "result" veld en bevat "ok" = ok, of de foutmelding.
 
 
----== CALLS ==---
+# CALLS
 
-POST /api/v1/login
+## POST /api/v1/login
 input:
 ```json
 {
@@ -34,11 +34,12 @@ output:
 }
 ```
 
-# curl example
+curl example:
+```
 curl -X POST -v http://localhost:8000/api/v1/login --data '{"username": "ronald", "password": "lalala21"}'
+```
 
-
-GET /api/v1/articles:
+## GET /api/v1/articles:
 input: none
 
 Geeft de complete lijst met artikelen terug
@@ -63,11 +64,13 @@ output:
 }
 ```
 
-# example:
+curl example:
+```
 curl http://localhost:8000/api/v1/articles
+```
 
 
-GET /api/v1/article/<id>
+## GET /api/v1/article/<id>
 input: none
 
 output:
@@ -84,7 +87,7 @@ output:
 ```
 
 
-PUT /api/v1/article
+## PUT /api/v1/article
 Nieuw artikel aanmaken
 token moet van een user zijn met 'editor' permissions.
 
@@ -114,7 +117,7 @@ output:
 ```
 
 
-POST /api/v1/article/<id>
+## POST /api/v1/article/<id>
 Artikel aanpassen
 
 input:
