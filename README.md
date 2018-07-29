@@ -15,6 +15,21 @@ ook REST calls voor gemaakt worden.
 Elke call heeft altijd een "result" veld en bevat "ok" = ok, of de foutmelding.
 
 
+# Installatie howto
+Om te testen / ontwikkelen:
+
+- pip3 install -r requirements.txt
+- cp articleapi/settings.py.example articleapi/settings.py
+- aanpassen settings.py naar wens
+  (voor nu alleen SECRET_KEY invullen/aanpassen en evt. DATABASE als je geen sqlite wilt)
+- ./migrate.py makemigrations
+- ./migrate.py migrate (maakt sqlite database aan)
+- ./migrate.py createsuperuser  (maak de 1e admin account aan)
+- ./migrate.py runserver
+
+Nu draait er een debug servertje op localhost:8000 waartegen je kunt testen.
+ga naar http://localhost:8000/admin/ om users te beheren
+
 # CALLS
 
 ## POST /api/v1/login
