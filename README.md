@@ -85,7 +85,7 @@ curl http://localhost:8000/api/v1/articles
 ```
 
 
-## GET /api/v1/article/<id>
+## GET /api/v1/article/\<id\>
 input: none
 
 output:
@@ -111,7 +111,7 @@ input:
 {
   "token": "<auth token>",
   "subject": "Artikel onderwerp",
-  "body": "Artikel inhoud"
+  "body": "Artikel inhoud",
   "viewers": [
       "henken",
       "harrys",
@@ -132,14 +132,13 @@ output:
 ```
 
 
-## POST /api/v1/article/<id>
+## POST /api/v1/article/\<id\>
 Artikel aanpassen
 
 input:
 ```json
 {
   "token": "<auth token>",
-  "id": "aan te passen artikel",
   "subject": "nieuw subject",
   "body": "nieuwe body"
 }
