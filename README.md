@@ -104,7 +104,7 @@ output:
 
 ## PUT /api/v1/article
 Nieuw artikel aanmaken
-token moet van een user zijn met 'editor' permissions.
+Token moet van een user zijn met 'article add' permissions.
 
 input:
 ```json
@@ -112,14 +112,7 @@ input:
   "token": "<auth token>",
   "subject": "Artikel onderwerp",
   "body": "Artikel inhoud",
-  "viewers": [
-      "henken",
-      "harrys",
-      "piet"
-  ],
-  "editors": [
-      "group_met_editors"
-  ]
+  "author": "auteur"
 }
 ```
 
@@ -134,13 +127,15 @@ output:
 
 ## POST /api/v1/article/\<id\>
 Artikel aanpassen
+Token moet van een user zijn met 'article change' permissions
 
 input:
 ```json
 {
   "token": "<auth token>",
   "subject": "nieuw subject",
-  "body": "nieuwe body"
+  "body": "nieuwe body",
+  "author": "nieuwe auteur"
 }
 ```
 

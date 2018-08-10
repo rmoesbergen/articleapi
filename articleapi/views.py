@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 from django.contrib.auth import authenticate
-from django.views.decorators.http import require_POST, require_GET
+from django.views.decorators.http import require_POST, require_GET, require_http_methods
 from .models import AuthToken, Article
 from datetime import datetime, timedelta
 from .decorators import json_call
@@ -32,7 +32,6 @@ def v1_login(request):
 
 
 @require_GET
-@json_call
 def v1_articles(request):
     articles = Article.objects.all()
 
@@ -52,7 +51,8 @@ def v1_articles(request):
     return JsonResponse(data=result)
 
 
-def v1_article(request, articleid):
+@require_GET
+def v1_article_by_id(request, articleid):
     try:
         article = Article.objects.get(pk=articleid)
     except Article.DoesNotExist:
@@ -69,3 +69,19 @@ def v1_article(request, articleid):
     }
 
     return JsonResponse(data=result)
+
+
+@require_http_methods(['PUT'])
+@json_call
+def v1_article(request):
+    params = request.json
+    if 'subject' not in params or 'body' not in params:
+        return JsonResponse(data={'result': 'required field is missing! {0}'.format(params)}, status=401)
+
+    article = Article()
+    article.subject = params['subject']
+    article.body = params['body']
+    if 'author' in params:
+        article.author = params['author']
+    article.save()
+    return JsonResponse(data={'result': 'ok', 'id': article.id})
