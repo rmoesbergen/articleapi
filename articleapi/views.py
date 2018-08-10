@@ -12,7 +12,7 @@ import uuid
 def v1_login(request):
     params = request.json
     if 'username' not in params or 'password' not in params:
-        return JsonResponse(data={'result': 'required field is missing! {0}'.format(params)}, status=401)
+        return JsonResponse(data={'result': 'required field is missing! {0}'.format(params)}, status=400)
 
     user = authenticate(request, username=params['username'], password=params['password'])
     if user:
@@ -90,7 +90,7 @@ def v1_article_by_id(request, articleid):
     try:
         article = Article.objects.get(pk=articleid)
     except Article.DoesNotExist:
-        return JsonResponse(data={'result': 'No such article!'})
+        return JsonResponse(data={'result': 'No such article!'}, status=404)
 
     if request.method == 'GET':
         return v1_get_article_by_id(request, article)
@@ -109,7 +109,7 @@ def v1_article_by_id(request, articleid):
 def v1_article(request):
     params = request.json
     if 'subject' not in params or 'body' not in params:
-        return JsonResponse(data={'result': 'required field is missing! {0}'.format(params)}, status=401)
+        return JsonResponse(data={'result': 'required field is missing! {0}'.format(params)}, status=400)
 
     article = Article()
     article.subject = params['subject']

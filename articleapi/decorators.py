@@ -15,7 +15,7 @@ def json_call(view_func):
             else:
                 request.json = json.loads(body)
         except JSONDecodeError:
-            return JsonResponse(data={'result': 'Invalid JSON! {0}'.format(body)}, status=500)
+            return JsonResponse(data={'result': 'Invalid JSON! {0}'.format(body)}, status=400)
 
         return view_func(request, *args, **kwargs)
     return wrapper_view_func
@@ -29,7 +29,7 @@ def permission_required(permission):
             try:
                 params = json.loads(body)
             except JSONDecodeError:
-                return JsonResponse(data={'result': 'Invalid JSON! {0}'.format(body)}, status=500)
+                return JsonResponse(data={'result': 'Invalid JSON! {0}'.format(body)}, status=400)
             if 'token' not in params:
                 return JsonResponse(data={'result': 'Token required!'}, status=401)
 
