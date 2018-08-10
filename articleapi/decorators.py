@@ -2,7 +2,6 @@ import json
 from functools import wraps
 from django.http import JsonResponse
 from json.decoder import JSONDecodeError
-from django.contrib.auth import login
 from .models import AuthToken
 
 
