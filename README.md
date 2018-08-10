@@ -145,3 +145,26 @@ output:
   "result": "ok"
 }
 ```
+
+curl example:
+```
+curl -X POST http://localhost:8000/api/v1/article/3 --data '{"token": "d4e9f218e9e44adeaf33cbbe66026ae3", "subject": "Artikel onderwerp aangepast", "body": "Artikel inhoud aangepast", "author": "blaat"}'
+```
+
+
+## DELETE /api/v1/article/\<id\>
+Artikel verwijderen
+Token moet van een user zijn met 'article delete' permissions
+
+input: none
+
+output:
+```json
+{
+  "result": "ok"
+}
+
+curl example:
+```
+curl -X DELETE http://localhost:8000/api/v1/article/4 --data '{"token": "d4e9f218e9e44adeaf33cbbe66026ae3"}'
+```
