@@ -2,18 +2,15 @@ REST Api voor artikelen, met permissions.
 In django, standaard django auth backend + UI gebruiken voor users/groups/permissions
 SSL/HTTPS required (lets encrypt)
 
-Per artikel zijn er 2 permissies:
-- view
-- edit
+Voor een artikel zijn er 3 permissies:
+- add
+- change
+- delete
 
-Bij het aanmaken van een artikel geef je groepen en/of users op per permissie
-(zie ook PUT /api/v1/article)
-
-beheer van groepen en users kan via de django admin UI. Evt. kunnen hiervoor
-ook REST calls voor gemaakt worden.
+Bij acties die een artikel aanpassen, wordt de juiste permissie gechecked.
+Permissie kan in de standaard django admin UI gegeven worden op user en/of groep niveau.
 
 Elke call heeft altijd een "result" veld en bevat "ok" = ok, of de foutmelding.
-
 
 # Installatie howto
 Om te testen / ontwikkelen:
