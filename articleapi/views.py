@@ -3,7 +3,7 @@ from django.contrib.auth import authenticate
 from django.views.decorators.http import require_POST, require_GET, require_http_methods
 from .models import AuthToken, Article
 from datetime import datetime, timedelta
-from .decorators import json_call
+from .decorators import json_call, permission_required
 import uuid
 
 
@@ -73,6 +73,7 @@ def v1_article_by_id(request, articleid):
 
 @require_http_methods(['PUT'])
 @json_call
+@permission_required('articleapi.add_article')
 def v1_article(request):
     params = request.json
     if 'subject' not in params or 'body' not in params:
