@@ -9,6 +9,9 @@ class AuthToken(models.Model):
     token = models.CharField(max_length=32, db_index=True)
     expires = models.DateTimeField()
 
+    def __str__(self):
+        return "{0} ({1})".format(self.token, self.user.username)
+
 
 class Article(models.Model):
     subject = models.CharField(max_length=1024)
