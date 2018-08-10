@@ -117,4 +117,4 @@ def v1_article(request):
     if 'author' in params:
         article.author = params['author']
     article.save()
-    return JsonResponse(data={'result': 'ok', 'id': article.id})
+    return JsonResponse(data={'result': 'ok', 'id': article.id}, status=201)
