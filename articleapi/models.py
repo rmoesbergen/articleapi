@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 class AuthToken(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
-    token = models.CharField(max_length=32)
+    token = models.CharField(max_length=32, db_index=True)
     expires = models.DateTimeField()
 
 
