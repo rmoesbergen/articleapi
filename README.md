@@ -163,6 +163,7 @@ output:
 {
   "result": "ok"
 }
+```
 
 curl example:
 ```
